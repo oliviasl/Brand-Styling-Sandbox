@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import Components from "@/components/components";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -94,7 +93,6 @@ export default function Nested() {
 
   useEffect(() => {
     const height = document.body.scrollHeight;
-    console.log(height);
     window.parent.postMessage({ type: "resize", height }, "*");
   });
 
@@ -164,14 +162,19 @@ export default function Nested() {
         <Card>
           <div className="flex flex-row items-center gap-2 border-b px-6 py-3">
             <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.134 2.5C13.5189 1.83334 14.4812 1.83333 14.8661 2.5L25.2584 20.5C25.6433 21.1667 25.1622 22 24.3924 22H3.60774C2.83795 22 2.35682 21.1667 2.74172 20.5L13.134 2.5Z" fill="#82C6E3" stroke="#459FB6" stroke-width="4"/>
+              <path
+                d="M13.134 2.5C13.5189 1.83334 14.4812 1.83333 14.8661 2.5L25.2584 20.5C25.6433 21.1667 25.1622 22 24.3924 22H3.60774C2.83795 22 2.35682 21.1667 2.74172 20.5L13.134 2.5Z"
+                fill="#82C6E3"
+                stroke="#459FB6"
+                stroke-width="4"
+              />
             </svg>
             <CardTitle className="font-albert-sans text-xl font-medium">Components</CardTitle>
           </div>
           <CardContent className="space-y-2 p-6">
-              <Components></Components>
+            <Components></Components>
           </CardContent>
-        </Card>        
+        </Card>
       </div>
     </div>
   );

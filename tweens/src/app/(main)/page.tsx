@@ -1,12 +1,13 @@
 "use client";
 
 import { Attributes, ATTRIBUTES } from "../attributes";
+import EmptyIcon from "./empty-icon";
 import StyleGuideDisplay from "./style-guide-display";
 import LoadingOverlay from "@/components/loading-overlay";
 import Logo from "@/components/logo";
 import RadarChart from "@/components/radar-chart";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useAsyncFn } from "react-use";
 
@@ -77,14 +78,18 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="flex border-y bg-white py-8">
+      <div className="demo-box flex border-y bg-white py-8">
         <div className="mx-auto w-full max-w-5xl overflow-hidden">
           {generateDesignTokensState.value?.object && !generateDesignTokensState.loading ? (
             <StyleGuideDisplay designTokens={generateDesignTokensState.value?.object} />
           ) : (
-            <div className="flex w-full flex-col items-center justify-center gap-4 p-12 opacity-50">
-              <LayoutDashboard className="h-16 w-16" />
-              <p className="text-3xl font-medium">No style guide yet!</p>
+            <div className="flex w-full flex-col items-center justify-center gap-4 p-12">
+              <EmptyIcon />
+              <p className="text-center text-xl text-gray-500">
+                Nothing to see here yet.
+                <br />
+                Pick your brand tone above and hit “Generate” to create a style guide!
+              </p>
             </div>
           )}
         </div>
