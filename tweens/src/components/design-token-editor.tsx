@@ -42,7 +42,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ label, value, onChange }) => (
           </ScrollArea>
         </PopoverContent>
       </Popover>
-      <Input type="text" value={value} onChange={e => onChange(e.target.value)} className="w-full shrink" />
+      <Input type="text" value={value as string} onChange={e => onChange(e.target.value)} className="w-full shrink" />
     </div>
   </div>
 );
@@ -147,13 +147,13 @@ export default function DesignTokenEditor({
             {section === "colors" ? (
               <ColorInput
                 label={labelMap[section]?.[key] || key}
-                value={value}
+                value={value as string}
                 onChange={newValue => handleInputChange(section, subsection, key, newValue)}
               />
             ) : unitMap[section]?.[key] !== undefined ? (
               <NumberUnitInput
                 label={labelMap[section]?.[key] || labelMap[section]?.[subsection]?.[key] || key}
-                value={value}
+                value={value as string}
                 onChange={newValue => handleInputChange(section, subsection, key, newValue)}
                 unit={unitMap[section][key]}
               />
@@ -165,7 +165,7 @@ export default function DesignTokenEditor({
                 <Input
                   type="text"
                   id={`${section}-${subsection}-${key}`}
-                  value={value}
+                  value={value as string}
                   onChange={e => handleInputChange(section, subsection, key, e.target.value)}
                 />
               </div>
@@ -192,7 +192,7 @@ export default function DesignTokenEditor({
 
           <TabsContent value="borders" className="space-y-4">
             <h2 className="px-2 text-xl font-semibold">Borders</h2>
-            {renderInputs("borders")}
+            {renderInputs("borders", "")}
           </TabsContent>
 
           <TabsContent value="colors" className="max-w-full space-y-4">
@@ -215,12 +215,12 @@ export default function DesignTokenEditor({
 
           <TabsContent value="typography" className="space-y-4">
             <h2 className="px-2 text-xl font-semibold">Typography</h2>
-            {renderInputs("typography")}
+            {renderInputs("typography", "")}
           </TabsContent>
 
           <TabsContent value="other" className="space-y-4">
             <h2 className="px-2 text-xl font-semibold">Other</h2>
-            {renderInputs("other")}
+            {renderInputs("other", "")}
           </TabsContent>
         </Tabs>
       </div>

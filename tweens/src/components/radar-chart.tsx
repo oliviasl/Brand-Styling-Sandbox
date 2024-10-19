@@ -99,7 +99,7 @@ export default function RadarChart({
     <div className="m-0 flex h-full w-full p-4">
       <div className="m-auto inline-block h-full w-full">
         <StyledCard>
-          <Radar data={chartData} options={options} />
+          <Radar data={chartData} options={options as any} />
         </StyledCard>
       </div>
     </div>
