@@ -3,6 +3,6 @@
   "rules": {
     "@typescript-eslint/no-explicit-any": "off", // Allow 'any' types
     "@typescript-eslint/no-unused-vars": "off", // Allow unused vars
-    "@typescript-eslint/no-empty-object-type": "off", // Allow empty object types
+    "@typescript-eslint/no-empty-object-type": "off" // Allow empty object types
   }
 }
