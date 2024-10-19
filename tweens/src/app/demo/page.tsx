@@ -117,7 +117,7 @@ export default function Nested() {
                     <div>
                       <p className="font-heading">{color}</p>
                       <p className="text-sm opacity-50">
-                        {(tailwindConfig as TailwindConfig).theme.extend.colors[color].DEFAULT || "default"}
+                        {(tailwindConfig as any).theme.extend.colors[color].DEFAULT || "default"}
                       </p>
                     </div>
                   </div>
@@ -145,13 +145,13 @@ export default function Nested() {
           </div>
           <CardContent className="space-y-2 p-6">
             <h1 className="font-heading text-3xl font-bold">
-              {(tailwindConfig as TailwindConfig).theme.extend.fontFamily.heading ||
-                (tailwindConfig as TailwindConfig).theme.extend.fontFamily.sans ||
+              {(tailwindConfig as any).theme.extend.fontFamily.heading ||
+                (tailwindConfig as any).theme.extend.fontFamily.sans ||
                 "Heading"}
             </h1>
             <p>
-              {(tailwindConfig as TailwindConfig).theme.extend.fontFamily.body ||
-                (tailwindConfig as TailwindConfig).theme.extend.fontFamily.sans ||
+              {(tailwindConfig as any).theme.extend.fontFamily.body ||
+                (tailwindConfig as any).theme.extend.fontFamily.sans ||
                 "Body Font"}
               , in a line of body text.
               <br />
