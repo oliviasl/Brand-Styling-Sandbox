@@ -111,9 +111,9 @@ export default function Nested() {
           <CardContent className="space-y-2 p-6">
             <div className="grid grid-cols-3 gap-4">
               {["primary", "secondary", "accent", "muted", "background", "foreground"].map(color => (
-                <div key={color} className="rounded">
-                  <div className={`bg-${color} h-24 w-full border border-b-0`} />
-                  <div className="border p-2">
+                <div key={color} className="overflow-hidden rounded border">
+                  <div className={`bg-${color} h-24 w-full`} />
+                  <div className="border-t p-2">
                     <div>
                       <p>{color}</p>
                       <p className="text-sm opacity-50">
