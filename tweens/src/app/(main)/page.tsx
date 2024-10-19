@@ -5,6 +5,7 @@ import StyleGuideDisplay from "./style-guide-display";
 import LoadingOverlay from "@/components/loading-overlay";
 import Logo from "@/components/logo";
 import RadarChart from "@/components/radar-chart";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Sparkles } from "lucide-react";
 import { useState } from "react";
@@ -90,7 +91,7 @@ export default function Page() {
         </div>
       </div>
       {generateDesignTokensState.loading && <LoadingOverlay text="Generating design tokens..." />}
-      <footer className="w-full p-8"></footer>
+      <Footer></Footer>
     </>
   );
 }
