@@ -1,12 +1,14 @@
 "use client";
 
 import { Attributes, ATTRIBUTES } from "../attributes";
-import NestedPart from "./nested-part";
+import StyleGuideDisplay from "./style-guide-display";
+import LoadingOverlay from "@/components/loading-overlay";
 import Logo from "@/components/logo";
 import RadarChart from "@/components/radar-chart";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { LayoutDashboard, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useAsyncFn } from "react-use";
 
 // Helper function to generate random values between 20 and 80
 const getRandomValue = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -39,14 +41,14 @@ export default function Page() {
     setData(newAttributes);
   };
 
-  const handleGenerate = async () => {
+  const [generateDesignTokensState, handleGenerate] = useAsyncFn(async () => {
     const res = await fetch("/api/generate-design-tokens", {
       method: "POST",
       body: JSON.stringify({ attributes: data }),
     });
 
-    console.log(await res.json());
-  };
+    return await res.json();
+  }, [data]);
 
   return (
     <div>
@@ -57,7 +59,12 @@ export default function Page() {
             <h1 className="text-5xl font-bold">Brand Styling Sandbox</h1>
             <p>Play around with this graph to adjust the tone of the branding you want.</p>
             <div>
-              <Button size="lg" className="text-lg" onClick={handleGenerate}>
+              <Button
+                size="lg"
+                className="text-lg"
+                onClick={handleGenerate}
+                disabled={generateDesignTokensState.loading}
+              >
                 <Sparkles />
                 Generate Style Guide
               </Button>
@@ -68,7 +75,19 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <NestedPart />
+      <div className="flex">
+        <div className="mx-auto mb-16 w-full max-w-5xl rounded-lg border bg-white p-4">
+          {generateDesignTokensState.value?.object && !generateDesignTokensState.loading ? (
+            <StyleGuideDisplay designTokens={generateDesignTokensState.value?.object} />
+          ) : (
+            <div className="flex w-full flex-col items-center justify-center gap-4 p-8 opacity-50">
+              <LayoutDashboard className="h-16 w-16" />
+              <p className="text-3xl font-medium">No style guide yet!</p>
+            </div>
+          )}
+        </div>
+      </div>
+      {generateDesignTokensState.loading && <LoadingOverlay text="Generating design tokens..." />}
     </div>
   );
 }

@@ -1,11 +1,11 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Albert_Sans } from "next/font/google";
-import "./globals.css";
 
 // Initialize the font with any custom options
 const albertSans = Albert_Sans({
   subsets: ["latin"], // Load specific subsets (like Latin)
-  weight: ["400", "700"], // Define the font weights you need
+  weight: ["400", "500", "700"], // Define the font weights you need
   style: ["normal", "italic"], // Optional styles if needed
   variable: "--font-albert-sans", // CSS variable for easier use in styles
 });
@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${albertSans.variable} font-sans antialiased bg-white`}>
-        {children}
-      </body>
+      <body className={`${albertSans.variable} bg-gray-100 font-sans antialiased`}>{children}</body>
     </html>
   );
 }
