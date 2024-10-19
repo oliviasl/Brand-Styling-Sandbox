@@ -12,9 +12,7 @@ import {
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
@@ -109,7 +107,6 @@ const invoices = [
     },
 ]
   
-
 export default function Components() {
     const chartConfig = {
         desktop: {
