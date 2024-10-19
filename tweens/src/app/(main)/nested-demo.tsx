@@ -19,11 +19,31 @@ export default function NestedDemo({ config }: { config: object }) {
     };
   }, []);
 
+  // Adjust iframe height based on messages from iframe content
+  useEffect(() => {
+    const handleResize = (event: MessageEvent) => {
+      if (
+        event.origin === window.location.origin && // Verify origin to ensure safety
+        event.data?.type === "resize" &&
+        iframeRef.current
+      ) {
+        iframeRef.current.style.height = `${event.data.height}px`;
+      }
+    };
+
+    window.addEventListener("message", handleResize);
+
+    return () => {
+      window.removeEventListener("message", handleResize);
+    };
+  }, []);
+
+  // Send Tailwind config to iframe once it's loaded
   useEffect(() => {
     if (isIframeLoaded && iframeRef.current?.contentWindow) {
-      iframeRef.current.contentWindow!.postMessage(
-        { tailwindConfig: config },
-        "*" // Replace '*' with the specific iframe origin if needed
+      iframeRef.current.contentWindow.postMessage(
+        { type: "config", tailwindConfig: config },
+        "*" // Replace '*' with specific iframe origin if needed
       );
     }
   }, [config, isIframeLoaded]);

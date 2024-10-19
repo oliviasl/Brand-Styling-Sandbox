@@ -76,11 +76,11 @@ export default function Page() {
         </div>
       </div>
       <div className="flex">
-        <div className="mx-auto mb-16 w-full max-w-5xl rounded-lg border bg-white p-4">
+        <div className="mx-auto mb-16 w-full max-w-5xl overflow-hidden rounded-lg border bg-white">
           {generateDesignTokensState.value?.object && !generateDesignTokensState.loading ? (
             <StyleGuideDisplay designTokens={generateDesignTokensState.value?.object} />
           ) : (
-            <div className="flex w-full flex-col items-center justify-center gap-4 p-8 opacity-50">
+            <div className="flex w-full flex-col items-center justify-center gap-4 p-12 opacity-50">
               <LayoutDashboard className="h-16 w-16" />
               <p className="text-3xl font-medium">No style guide yet!</p>
             </div>

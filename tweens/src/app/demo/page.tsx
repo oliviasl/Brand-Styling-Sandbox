@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 
 const isSystemFont = (font: string) => {
@@ -36,6 +37,7 @@ const isSystemFont = (font: string) => {
 };
 
 const loadFonts = async (fonts: string[]) => {
+  console.log(fonts);
   const loadedFonts: string[] = [];
 
   for (const font of fonts) {
@@ -57,7 +59,7 @@ const loadFonts = async (fonts: string[]) => {
 };
 
 export default function Nested() {
-  const [tailwindReady, setTailwindReady] = useState(false);
+  const [tailwindConfig, setTailwindConfig] = useState<object | null>(null);
   const [loadedFonts, setLoadedFonts] = useState<string[]>([]);
 
   useEffect(() => {
@@ -69,9 +71,12 @@ export default function Nested() {
         script.onload = () => {
           window.tailwind.config = event.data.tailwindConfig;
 
+          // Add Albert font
+          window.tailwind.config.theme.extend.fontFamily["albert-sans"] = ["Albert Sans"];
+
           loadFonts(Object.values(window.tailwind.config.theme.extend.fontFamily).flat() as string[]);
 
-          setTailwindReady(true); // Trigger re-render to apply styles
+          setTailwindConfig(window.tailwind.config); // Trigger re-render to apply styles
         };
         document.head.appendChild(script);
       }
@@ -86,11 +91,72 @@ export default function Nested() {
     };
   }, []);
 
-  if (!tailwindReady) return;
+  useEffect(() => {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "resize", height }, "*");
+  });
+
+  if (!tailwindConfig) return;
 
   return (
-    <div className="p-4">
-      <Button color="primary">test</Button>
+    <div className="p-8">
+      <div className="flex flex-col gap-4">
+        <Card>
+          <div className="flex flex-row items-center gap-2 border-b px-6 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 28 28">
+              <circle cx="14" cy="14" r="12" fill="#FFC9C9" stroke="#E07676" strokeWidth="4"></circle>
+            </svg>
+            <CardTitle className="font-albert-sans text-xl font-medium">Colors</CardTitle>
+          </div>
+          <CardContent className="space-y-2 p-6">
+            <div className="grid grid-cols-3 gap-4">
+              {["primary", "secondary", "accent", "muted", "background", "foreground"].map(color => (
+                <div key={color} className="rounded">
+                  <div className={`bg-${color} h-24 w-full border border-b-0`} />
+                  <div className="border p-2">
+                    <div>
+                      <p>{color}</p>
+                      <p className="text-sm opacity-50">
+                        {tailwindConfig.theme.extend.colors[color].DEFAULT || "default"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <div className="flex flex-row items-center gap-2 border-b px-6 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 36 36">
+              <rect
+                width="30.631"
+                height="11.116"
+                x="10.145"
+                y="2.822"
+                fill="#EED389"
+                stroke="#D59B37"
+                strokeWidth="4"
+                rx="2"
+                transform="rotate(41.204 10.145 2.822)"
+              ></rect>
+            </svg>
+            <CardTitle className="font-albert-sans text-xl font-medium">Typography</CardTitle>
+          </div>
+          <CardContent className="space-y-2 p-6">
+            <h1 className="font-heading text-3xl font-bold">Heading</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Button color="primary">test</Button>
+      </div>
     </div>
   );
 }

@@ -1,26 +1,9 @@
 import { z } from "zod";
 
-// FontFamily Schema
-const FontFamilySchema = z.object({
-  primary: z.string(),
-  secondary: z.string(),
-});
-
-// TypographyConfig Schema
-const TypographyConfigSchema = z.object({
-  fontFamily: z.string(),
-  fontSize: z.string(),
-  fontWeight: z.string(),
-  lineHeight: z.string(),
-  letterSpacing: z.string(),
-});
-
 // Typography Schema
 const TypographySchema = z.object({
-  heading: TypographyConfigSchema,
-  subheading: TypographyConfigSchema,
-  subsubheading: TypographyConfigSchema,
-  body: TypographyConfigSchema,
+  heading: z.string(),
+  body: z.string(),
 });
 
 // Borders Schema

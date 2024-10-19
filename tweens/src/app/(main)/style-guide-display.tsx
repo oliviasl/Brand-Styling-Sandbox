@@ -19,8 +19,8 @@ export default function StyleGuideDisplay({ designTokens }: { designTokens: any 
   }, [setConfig, designTokens]);
 
   return (
-    <div className="flex">
-      <div className="flex shrink-0 flex-col gap-4 p-4">
+    <div className="flex overflow-hidden">
+      <div className="flex shrink-0 flex-col gap-4 border-r p-8">
         <h2 className="text-4xl font-medium">Style Guide</h2>
         <Button variant={"secondary"} className="border shadow">
           <Shapes />
