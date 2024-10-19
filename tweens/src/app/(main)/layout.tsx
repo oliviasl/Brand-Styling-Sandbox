@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${albertSans.variable} bg-gray-100 font-sans antialiased`}>{children}</body>
+      <body className={`${albertSans.variable} bg-[#fafafa] font-sans antialiased`}>{children}</body>
     </html>
   );
 }

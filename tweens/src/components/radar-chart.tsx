@@ -10,11 +10,12 @@ const StyledCard = styled.div`
   position: relative;
   margin: auto;
   aspect-ratio: 1 / 1;
-  max-height: 40rem;
+  height: 35rem;
+  width: 35rem;
   padding: 2rem;
   background-color: white;
   border-radius: 12px;
-  border: 3px solid #cececd;
+  border: 3px solid #e7e7e7;
   height: 100%;
   max-width: 100%;
 
@@ -26,7 +27,7 @@ const StyledCard = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #cececd;
+    background-color: #e7e7e7;
     border-radius: 12px;
     z-index: -1;
     transform: rotate(3deg);
@@ -95,7 +96,7 @@ export default function RadarChart({
   };
 
   return (
-    <div className="m-0 flex h-full p-4">
+    <div className="m-0 flex h-full w-full p-4">
       <div className="m-auto inline-block h-full w-full">
         <StyledCard>
           <Radar data={chartData} options={options} />

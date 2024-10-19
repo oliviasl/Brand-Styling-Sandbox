@@ -1,7 +1,7 @@
 export default function Logo() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="206" height="116" fill="none" viewBox="0 0 206 116">
-      <g strokeWidth="4" filter="url(#filter0_d_13_834)">
+      <g strokeWidth="2" filter="url(#filter0_d_13_834)">
         <path
           fill="#FFC9C9"
           stroke="#E07676"

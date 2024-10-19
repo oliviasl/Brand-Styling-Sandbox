@@ -53,24 +53,26 @@ export default function Page() {
   return (
     <div>
       <div className="flex px-8 py-16">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-12">
-          <div className="flex flex-col justify-center gap-4">
-            <Logo />
-            <h1 className="text-5xl font-bold">Brand Styling Sandbox</h1>
-            <p>Play around with this graph to adjust the tone of the branding you want.</p>
-            <div>
-              <Button
-                size="lg"
-                className="text-lg"
-                onClick={handleGenerate}
-                disabled={generateDesignTokensState.loading}
-              >
-                <Sparkles />
-                Generate Style Guide
-              </Button>
+        <div className="mx-auto flex w-full max-w-5xl gap-12">
+          <div className="m-auto w-full">
+            <div className="flex w-80 flex-col justify-center gap-4">
+              <Logo />
+              <h1 className="text-[2.5rem] font-bold leading-none">Brand Styling Sandbox</h1>
+              <p className="text-lg">Play around with this graph to adjust the tone of the branding you want.</p>
+              <div>
+                <Button
+                  size="lg"
+                  className="text-lg"
+                  onClick={handleGenerate}
+                  disabled={generateDesignTokensState.loading}
+                >
+                  <Sparkles />
+                  Generate Style Guide
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="">
+          <div className="w-full">
             <RadarChart data={data} handleAttributeChange={handleAttributeChange} />
           </div>
         </div>
