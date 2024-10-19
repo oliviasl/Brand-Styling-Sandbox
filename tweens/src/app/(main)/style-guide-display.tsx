@@ -57,7 +57,7 @@ export default function StyleGuideDisplay({ designTokens: _designTokens }: { des
   return (
     <>
       <div className="flex overflow-hidden">
-        <div className="flex shrink-0 flex-col gap-4 border-r p-8">
+        <div className="flex shrink-0 flex-col gap-4 p-8">
           <h2 className="text-3xl font-bold">Style Guide</h2>
           <Button
             variant={"secondary"}
@@ -100,7 +100,7 @@ export default function StyleGuideDisplay({ designTokens: _designTokens }: { des
           </div>
         )}
       </div>
-      <Drawer open={drawerOpen} onOpenChange={() => setDrawerOpen(false)} direction="left">
+      <Drawer open={drawerOpen} onOpenChange={() => setDrawerOpen(false)} direction="left" disablePreventScroll>
         <DrawerPortal>
           <BaseDrawer.Overlay className="fixed inset-0 bg-black/40" />
           <BaseDrawer.Content

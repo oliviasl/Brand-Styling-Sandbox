@@ -93,7 +93,8 @@ export default function Nested() {
   }, []);
 
   useEffect(() => {
-    const height = document.documentElement.scrollHeight;
+    const height = document.body.scrollHeight;
+    console.log(height);
     window.parent.postMessage({ type: "resize", height }, "*");
   });
 
@@ -116,7 +117,7 @@ export default function Nested() {
                   <div className={`bg-${color} h-24 w-full`} />
                   <div className="border-t p-2">
                     <div>
-                      <p>{color}</p>
+                      <p className="font-heading">{color}</p>
                       <p className="text-sm opacity-50">
                         {tailwindConfig.theme.extend.colors[color].DEFAULT || "default"}
                       </p>
@@ -145,13 +146,18 @@ export default function Nested() {
             <CardTitle className="font-albert-sans text-xl font-medium">Typography</CardTitle>
           </div>
           <CardContent className="space-y-2 p-6">
-            <h1 className="font-heading text-3xl font-bold">Heading</h1>
+            <h1 className="font-heading text-3xl font-bold">
+              {tailwindConfig.theme.extend.fontFamily.heading ||
+                tailwindConfig.theme.extend.fontFamily.sans ||
+                "Heading"}
+            </h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
+              {tailwindConfig.theme.extend.fontFamily.body ||
+                tailwindConfig.theme.extend.fontFamily.sans ||
+                "Body Font"}
+              , in a line of body text.
+              <br />
+              Or maybe even an entire paragraph of body text?
             </p>
           </CardContent>
         </Card>

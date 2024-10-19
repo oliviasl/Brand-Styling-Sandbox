@@ -51,7 +51,7 @@ export default function Page() {
   }, [data]);
 
   return (
-    <div>
+    <>
       <div className="flex px-8 py-16">
         <div className="mx-auto flex w-full max-w-5xl gap-12">
           <div className="m-auto w-full">
@@ -77,8 +77,8 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="flex">
-        <div className="mx-auto mb-16 w-full max-w-5xl overflow-hidden rounded-lg border bg-white">
+      <div className="flex border-y bg-white py-8">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden">
           {generateDesignTokensState.value?.object && !generateDesignTokensState.loading ? (
             <StyleGuideDisplay designTokens={generateDesignTokensState.value?.object} />
           ) : (
@@ -90,6 +90,7 @@ export default function Page() {
         </div>
       </div>
       {generateDesignTokensState.loading && <LoadingOverlay text="Generating design tokens..." />}
-    </div>
+      <footer className="w-full p-8"></footer>
+    </>
   );
 }

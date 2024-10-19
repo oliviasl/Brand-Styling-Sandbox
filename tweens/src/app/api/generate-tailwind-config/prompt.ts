@@ -49,10 +49,12 @@ Your role is to update a TailwindCSS config with the provided design tokens.
         }
       },
       "borderRadius": {
-        "default": "var(--radius)"
+        "DEFAULT": "var(--radius)"
       },
       "fontFamily": {
         "sans": ["var(--font-sans)"]
+        "heading": ["var(--font-sans)"]
+        "body": ["var(--font-sans)"]
       },
       "keyframes": {
         "accordion-down": {

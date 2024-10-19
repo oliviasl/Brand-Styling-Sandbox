@@ -1,31 +1,13 @@
 "use client";
 
 import { Button } from "./ui/button";
+import colors from "@/app/lib/colors";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import * as React from "react";
-
-// Define color options
-const colors = [
-  "#FFEBEE",
-  "#FFCDD2",
-  "#EF9A9A",
-  "#E57373",
-  "#EF5350",
-  "#FCE4EC",
-  "#F8BBD0",
-  "#F48FB1",
-  "#F06292",
-  "#EC407A",
-  "#F3E5F5",
-  "#E1BEE7",
-  "#CE93D8",
-  "#BA68C8",
-  "#AB47BC",
-];
 
 type ColorInputProps = {
   label: string;
@@ -45,7 +27,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ label, value, onChange }) => (
             aria-label="Select color"
           />
         </PopoverTrigger>
-        <PopoverContent className="w-64 p-0">
+        <PopoverContent className="w-64 p-0" align="start">
           <ScrollArea className="h-80">
             <div className="grid grid-cols-5 gap-2 p-2">
               {colors.map(color => (
@@ -92,21 +74,6 @@ const NumberUnitInput: React.FC<NumberUnitInputProps> = ({ label, value, onChang
       </div>
     </div>
   );
-};
-
-type Config = {
-  borders: {
-    radius: string;
-    width: string;
-  };
-  colors: Record<string, Record<string, string> | string>;
-  typography: Record<string, Record<string, string>>;
-  other: {
-    shadow: string;
-    transitionDuration: string;
-    transitionProperties: string;
-    transitionTimingFunction: string;
-  };
 };
 
 export default function DesignTokenEditor({
@@ -234,14 +201,14 @@ export default function DesignTokenEditor({
               <div className="px-2">
                 <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="primary">Primary</TabsTrigger>
+                  <TabsTrigger value="secondary">Secondary</TabsTrigger>
                   <TabsTrigger value="accent">Accent</TabsTrigger>
-                  <TabsTrigger value="destructive">Destructive</TabsTrigger>
                   <TabsTrigger value="muted">Muted</TabsTrigger>
                 </TabsList>
               </div>
               <TabsContent value="primary">{renderInputs("colors", "primary")}</TabsContent>
+              <TabsContent value="secondary">{renderInputs("colors", "secondary")}</TabsContent>
               <TabsContent value="accent">{renderInputs("colors", "accent")}</TabsContent>
-              <TabsContent value="destructive">{renderInputs("colors", "destructive")}</TabsContent>
               <TabsContent value="muted">{renderInputs("colors", "muted")}</TabsContent>
             </Tabs>
           </TabsContent>
