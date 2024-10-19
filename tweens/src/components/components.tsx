@@ -254,7 +254,7 @@ export default function Components() {
         <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
-                <TableRow className="bg-foreground">
+                <TableRow className="bg-secondary">
                     <TableHead className="w-[100px]">Invoice</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Method</TableHead>
