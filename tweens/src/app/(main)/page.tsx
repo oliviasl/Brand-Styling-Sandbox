@@ -95,7 +95,7 @@ export default function Page() {
           )}
         </div>
       </div>
-      {generateDesignTokensState.loading && <LoadingOverlay text="Generating design tokens..." />}
+      {generateDesignTokensState.loading && <LoadingOverlay text="Generating your brand..." />}
       <Footer></Footer>
     </>
   );
